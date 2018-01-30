@@ -22,6 +22,19 @@ def openFile(line,settings):
 			folder = settings.get('dir')
 			for path in folder:
 				openFromFolder(filename,path,False)
+	else:
+		m = re.search('(\w*\.(cc|cpp|h|hpp))', line)
+		if m != None and settings.has('dir'):
+			filename = m.group(1)
+			filename = baseName(filename,'/')
+			filename = baseName(filename,'\\')
+			folder=sublime.active_window().extract_variables()['folder']
+			#print("searching [" + filename + "] in [" + folder + "]")
+			if openFromFolder(filename,folder,True) == False:
+				folder = settings.get('dir')
+				for path in folder:
+					if openFromFolder(filename,path,False):
+						break
 
 def openFromFolder(filename,folder,recursive):
 	bfound = False

@@ -1,5 +1,8 @@
 {
     "dir":[
-        "/usr/include/"
+        "/usr/include/",
+        "/usr/include/c++/7",
+        "/usr/include/net-snmp/",
+        "/usr/include/net-snmp/agent"
     ]
 }
